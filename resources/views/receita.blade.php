@@ -4,7 +4,7 @@
 <div class="container">
     <div class="d-flex justify-content-between align-items-center mb-3">
     <h1>Receitas</h1>
-    <a href="{{ route('rcreate') }}" class="btn btn-success">Novo</a> <!-- Botão "Novo" -->
+    <a href="{{ route('rcreate') }}" class="btn btn-success">Novo</a> <!-- Botão "Novo" no canto superior direito -->
 </div>
     <a href="{{ route('rcreate') }}" class="btn btn-primary mb-3">Adicionar Receita</a>
     <a href="{{ route('despesa') }}" class="btn btn-primary mb-3">Despesas</a>
@@ -30,7 +30,7 @@
                     <form action="{{ route('receitas.destroy', $receita) }}" method="POST" style="display:inline-block;">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Deletar</button>
+                        <button type="submit" class="btn btn-primary">Deletar</button>
                     </form>
                 </td>
             </tr>
@@ -45,4 +45,10 @@
         </tfoot>
     </table>
 </div>
+
+<script>
+    function confirmDelete() {
+        return confirm('Você tem certeza que deseja deletar esta receita?');
+    }
+</script>
 @endsection

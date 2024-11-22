@@ -6,22 +6,26 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\ValidationException;
 
 class UserController extends Controller
 {
-    // Exibe o formulário de registro
+    /**
+     * Exibe o formulário de registro.
+     */
     public function showRegistrationForm()
     {
         return view('auth.cadastro');
     }
 
-
-    // Processa o registro
+    /**
+     * Processa o registro do usuário.
+     */
     public function register(Request $request)
     {
         $validatedData = $request->validate([
-            'name' => 'required|max:255',
-            'email' => 'required|email|unique:users|max:255',
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255|unique:users',
             'phone' => 'required|digits:9',
             'password' => 'required|string|min:8|confirmed',
         ]);
@@ -33,36 +37,53 @@ class UserController extends Controller
             'password' => Hash::make($validatedData['password']),
         ]);
 
+        // Faz login automaticamente após o cadastro
         Auth::login($user);
 
-         // Redireciona para a página de login com a mensagem de sucesso
-         return redirect()->route('login')->with('success', 'Cadastro realizado com sucesso! Agora, faça login.');
+        return redirect()->route('dashboard')->with('success', 'Cadastro realizado com sucesso!');
     }
 
-    // Exibe o formulário de login
+    /**
+     * Exibe o formulário de login.
+     */
     public function showLoginForm()
     {
         return view('auth.login');
     }
 
-    // Processa o login
+    /**
+     * Processa o login do usuário.
+     */
     public function login(Request $request)
     {
         $credentials = $request->validate([
             'email' => 'required|email',
-            'password' => 'required',
+            'password' => 'required|string',
         ]);
 
+        // Verifica as credenciais e tenta logar
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-        return redirect()->route('home');
+
+            return redirect()->route('dashboard')->with('success', 'Login realizado com sucesso!');
         }
 
-    // Retornar erro de credenciais inválidas
-    return back()->withErrors([
-    'email' => 'As credenciais fornecidas estão incorretas.',
-    ])->onlyInput('email');
+        // Limita tentativas de login e retorna erro de credenciais
+        throw ValidationException::withMessages([
+            'email' => 'As credenciais fornecidas estão incorretas.',
+        ]);
     }
 
+    /**
+     * Faz logout do usuário.
+     */
+    public function logout(Request $request)
+    {
+        Auth::logout();
 
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()->route('login')->with('success', 'Logout realizado com sucesso!');
+    }
 }

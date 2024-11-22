@@ -4,6 +4,7 @@ use App\Http\Controllers\{UserController};
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReceitaController;
 use App\Http\Controllers\DespesaController;
+use App\Http\Controllers\RelatorioController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -54,4 +55,6 @@ Route::post('/despesas', [DespesaController::class, 'store'])->name('despesas.st
 Route::get('/despesas/{despesa}/edit', [DespesaController::class, 'edit'])->name('dedit');
 Route::put('/despesas/{despesa}', [DespesaController::class, 'update'])->name('despesas.update');
 Route::delete('/despesas/{despesa}', [DespesaController::class, 'destroy'])->name('despesas.destroy');
+
+Route::get('/relatorio', [RelatorioController::class, 'index'])->name('relatorio');
 require __DIR__.'/auth.php';
