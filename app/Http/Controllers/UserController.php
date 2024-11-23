@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Laravel\Socialite\Facades\Socialite;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -40,7 +41,7 @@ class UserController extends Controller
         // Faz login automaticamente após o cadastro
         Auth::login($user);
 
-        return redirect()->route('dashboard')->with('success', 'Cadastro realizado com sucesso!');
+        return redirect()->route('auth.login')->with('success', 'Cadastro realizado com sucesso!');
     }
 
     /**
@@ -84,6 +85,6 @@ class UserController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect()->route('login')->with('success', 'Logout realizado com sucesso!');
+        return redirect()->route('login.auth')->with('success', 'Logout realizado com sucesso!');
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\{UserController};
+use App\Http\Controllers\{UserController, FacebookController};
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReceitaController;
 use App\Http\Controllers\DespesaController;
@@ -24,6 +24,10 @@ Route::prefix('auth')->group(function () {
         Route::post('/login', [UserController::class, 'login'])->name('auth.login.post');
     });
 
+     // Login com o Facebook
+     Route::get('/login/facebook', [FacebookController::class, 'redirectToFacebook'])->name('auth.login.facebook'); // Redireciona para o Facebook
+     Route::get('/login/facebook/callback', [FacebookController::class, 'handleFacebookCallback'])->name('auth.login.facebook.callback'); // Recebe o callback do Facebook
+
         // Rota de cadastro
     Route::get('/cadastro', [UserController::class, 'showRegistrationForm'])->name('cadastro');
     Route::post('/cadastro', [UserController::class, 'register'])->name('cadastro.store');
@@ -36,6 +40,7 @@ Route::prefix('auth')->group(function () {
    // Rota de logout
 Route::post('/logout', [UserController::class, 'logout'])->name('auth.logout');
 
+// Dashboard
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard')->middleware('auth');
@@ -57,4 +62,5 @@ Route::put('/despesas/{despesa}', [DespesaController::class, 'update'])->name('d
 Route::delete('/despesas/{despesa}', [DespesaController::class, 'destroy'])->name('despesas.destroy');
 
 Route::get('/relatorio', [RelatorioController::class, 'index'])->name('relatorio');
+
 require __DIR__.'/auth.php';

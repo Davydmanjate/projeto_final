@@ -40,6 +40,9 @@
                         </label>
                     </div>
                     <button type="submit" class="btn btn-primary btn-lg btn-block">Sign in</button>
+                    <a href="{{ route('auth.login.facebook') }}" class="btn btn-primary">
+                        Login com o Facebook
+                    </a>
                 </form>
             </div>
             <div class="card-footer bg-white p-0">

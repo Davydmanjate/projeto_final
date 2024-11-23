@@ -7,10 +7,7 @@
             <div class="row">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     <div class="page-header">
-                        <h3 class="mb-2">Influencer Dashboard Template</h3>
-                        <p class="pageheader-text">
-                            Bem-vindo ao painel do usuário autenticado.
-                        </p>
+                        <h3 class="mb-2">Bem-vindo ao painel do usuário autenticado.</h3>
                         <div class="page-breadcrumb">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">

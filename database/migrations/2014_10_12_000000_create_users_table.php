@@ -1,3 +1,4 @@
+<?php
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,9 +14,12 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('phone', 15);  // Modificado para 15 caracteres
+            $table->string('phone', 9);
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->string('password')->nullable();  // Permite nulo para logins via redes sociais
+            $table->string('facebook_id')->nullable()->unique();  // ID do Facebook
+            $table->string('facebook_token')->nullable();  // Token de acesso do Facebook
+            $table->enum('auth_method', ['local', 'facebook'])->default('local');
             $table->rememberToken();
             $table->timestamps();
         });

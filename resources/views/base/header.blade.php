@@ -39,83 +39,22 @@
                                 <input class="form-control" type="text" placeholder="Search..">
                             </div>
                         </li>
-                        <li class="nav-item dropdown notification">
-                            <a class="nav-link nav-icons" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-fw fa-bell"></i> <span class="indicator"></span></a>
-                            <ul class="dropdown-menu dropdown-menu-right notification-dropdown">
-                                <li>
-                                    <div class="notification-title"> Notification</div>
-                                    <div class="notification-list">
-                                        <div class="list-group">
-                                            <a href="#" class="list-group-item list-group-item-action active">
-                                                <div class="notification-info">
-                                                    <div class="notification-list-user-img"><img src="../assets/images/avatar-2.jpg" alt="" class="user-avatar-md rounded-circle"></div>
-                                                    <div class="notification-list-user-block"><span class="notification-list-user-name">Jeremy Rakestraw</span>accepted your invitation to join the team.
-                                                        <div class="notification-date">2 min ago</div>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                            <a href="#" class="list-group-item list-group-item-action">
-                                                <div class="notification-info">
-                                                    <div class="notification-list-user-img"><img src="../assets/images/avatar-3.jpg" alt="" class="user-avatar-md rounded-circle"></div>
-                                                    <div class="notification-list-user-block"><span class="notification-list-user-name">
-                                                        John Abraham</span>is now following you
-                                                        <div class="notification-date">2 days ago</div>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                            <a href="#" class="list-group-item list-group-item-action">
-                                                <div class="notification-info">
-                                                    <div class="notification-list-user-img"><img src="../assets/images/avatar-4.jpg" alt="" class="user-avatar-md rounded-circle"></div>
-                                                    <div class="notification-list-user-block"><span class="notification-list-user-name">Monaan Pechi</span> is watching your main repository
-                                                        <div class="notification-date">2 min ago</div>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                            <a href="#" class="list-group-item list-group-item-action">
-                                                <div class="notification-info">
-                                                    <div class="notification-list-user-img"><img src="../assets/images/avatar-5.jpg" alt="" class="user-avatar-md rounded-circle"></div>
-                                                    <div class="notification-list-user-block"><span class="notification-list-user-name">Jessica Caruso</span>accepted your invitation to join the team.
-                                                        <div class="notification-date">2 min ago</div>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="list-footer"> <a href="#">View all notifications</a></div>
-                                </li>
-                            </ul>
-                        </li>
                         <li class="nav-item dropdown connection">
                             <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fas fa-fw fa-th"></i> </a>
                             <ul class="dropdown-menu dropdown-menu-right connection-dropdown">
                                 <li class="connection-list">
                                     <div class="row">
                                         <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 ">
-                                            <a href="#" class="connection-item"><img src="../assets/images/github.png" alt="" > <span>Github</span></a>
+                                            <a href="{{ route('receita') }}" class="connection-item"><img src="../assets/images/github.png" alt="" > <span>Receita</span></a>
                                         </div>
                                         <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 ">
-                                            <a href="#" class="connection-item"><img src="../assets/images/dribbble.png" alt="" > <span>Dribbble</span></a>
+                                            <a href="{{ route('despesa') }}" class="connection-item"><img src="../assets/images/dribbble.png" alt="" > <span>Despesa</span></a>
                                         </div>
                                         <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 ">
-                                            <a href="#" class="connection-item"><img src="../assets/images/dropbox.png" alt="" > <span>Dropbox</span></a>
+                                            <a href="{{ route('relatorio') }}" class="connection-item"><img src="../assets/images/dropbox.png" alt="" > <span>Relatorio</span></a>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 ">
-                                            <a href="#" class="connection-item"><img src="../assets/images/bitbucket.png" alt=""> <span>Bitbucket</span></a>
-                                        </div>
-                                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 ">
-                                            <a href="#" class="connection-item"><img src="../assets/images/mail_chimp.png" alt="" ><span>Mail chimp</span></a>
-                                        </div>
-                                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 ">
-                                            <a href="#" class="connection-item"><img src="../assets/images/slack.png" alt="" > <span>Slack</span></a>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="conntection-footer"><a href="#">More</a></div>
+
                                 </li>
                             </ul>
                         </li>
@@ -124,12 +63,12 @@
                             <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
                                 <div class="nav-user-info">
                                     <h5 class="mb-0 text-white nav-user-name">
-                                    John Abraham</h5>
+                                    {{auth()->user()->name}}</h5>
                                     <span class="status"></span><span class="ml-2">Available</span>
                                 </div>
-                                <a class="dropdown-item" href="#"><i class="fas fa-user mr-2"></i>Account</a>
-                                <a class="dropdown-item" href="#"><i class="fas fa-cog mr-2"></i>Setting</a>
-                                <a class="dropdown-item" href="#"><i class="fas fa-power-off mr-2"></i>Logout</a>
+                                <a class="dropdown-item" href="{{ route('auth.login') }}"><i class="fas fa-user mr-2"></i>Login</a>
+                                <a class="dropdown-item" href="{{ route('cadastro') }}"><i class="fas fa-cog mr-2"></i>Cadastro</a>
+                                <a class="dropdown-item" href="logout"><i class="fas fa-power-off mr-2"></i>Sair</a>
                             </div>
                         </li>
                     </ul>
@@ -156,122 +95,20 @@
                                 Menu
                             </li>
                             <li class="nav-item ">
-                                <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fa fa-fw fa-user-circle"></i>Dashboard <span class="badge badge-success">6</span></a>
-                                <div id="submenu-1" class="collapse submenu" style="">
-                                    <ul class="nav flex-column">
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="index.html" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1-2" aria-controls="submenu-1-2">E-Commerce</a>
-                                            <div id="submenu-1-2" class="collapse submenu" style="">
-                                                <ul class="nav flex-column">
-                                                    <li class="nav-item">
-                                                        <a class="nav-link" href="../index.html">E Commerce Dashboard</a>
-                                                    </li>
-                                                    <li class="nav-item">
-                                                        <a class="nav-link" href="../ecommerce-product.html">Product List</a>
-                                                    </li>
-                                                    <li class="nav-item">
-                                                        <a class="nav-link" href="../ecommerce-product-single.html">Product Single</a>
-                                                    </li>
-                                                    <li class="nav-item">
-                                                        <a class="nav-link" href="../ecommerce-product-checkout.html">Product Checkout</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="../dashboard-finance.html">Finance</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="../dashboard-sales.html">Sales</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1-1" aria-controls="submenu-1-1">Infulencer</a>
-                                            <div id="submenu-1-1" class="collapse submenu" style="">
-                                                <ul class="nav flex-column">
-                                                    <li class="nav-item">
-                                                        <a class="nav-link" href="../dashboard-influencer.html">Influencer</a>
-                                                    </li>
-                                                    <li class="nav-item">
-                                                        <a class="nav-link" href="../influencer-finder.html">Influencer Finder</a>
-                                                    </li>
-                                                    <li class="nav-item">
-                                                        <a class="nav-link" href="../influencer-profile.html">Influencer Profile</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
+                                <a class="nav-link active" href="{{route('dashboard')}}" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fa fa-fw fa-user-circle"></i>Dashboard <span class="badge badge-success">6</span></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fa fa-fw fa-rocket"></i>UI Elements</a>
-                                <div id="submenu-2" class="collapse submenu" style="">
-                                    <ul class="nav flex-column">
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="cards.html">Cards <span class="badge badge-secondary">New</span></a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="general.html">General</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="carousel.html">Carousel</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="listgroup.html">List Group</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="typography.html">Typography</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="accordions.html">Accordions</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="tabs.html">Tabs</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-3" aria-controls="submenu-3"><i class="fas fa-fw fa-chart-pie"></i>Chart</a>
-                                <div id="submenu-3" class="collapse submenu" style="">
-                                    <ul class="nav flex-column">
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="chart-c3.html">C3 Charts</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="chart-chartist.html">Chartist Charts</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="chart-charts.html">Chart</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="nav-item ">
-                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-4" aria-controls="submenu-4"><i class="fab fa-fw fa-wpforms"></i>Forms</a>
-                                <div id="submenu-4" class="collapse submenu" style="">
-                                    <ul class="nav flex-column">
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="form-elements.html">Form Elements</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="form-validation.html">Parsely Validations</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="multiselect.html">Multiselect</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-5" aria-controls="submenu-5"><i class="fas fa-fw fa-table"></i>Tables</a>
+                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-5" aria-controls="submenu-5"><i class="fas fa-fw fa-table"></i>Gestão</a>
                                 <div id="submenu-5" class="collapse submenu" style="">
                                     <ul class="nav flex-column">
                                         <li class="nav-item">
-                                            <a class="nav-link" href="general-table.html">General Tables</a>
+                                            <a class="nav-link" href="{{ route('receita') }}">Receita</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="data-tables.html">Data Tables</a>
+                                            <a class="nav-link" href="{{ route('despesa') }}">Despesa</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{{ route('relatorio') }}">Relatorio</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -281,58 +118,16 @@
                                 <div id="submenu-6" class="collapse submenu" style="">
                                     <ul class="nav flex-column">
                                         <li class="nav-item">
-                                            <a class="nav-link" href="{{route ('login')}}">Login</a>
+                                            <a class="nav-link" href="{{route ('auth.login')}}">Login</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="#">Cadastro</a>
+                                            <a class="nav-link" href="{{ route('cadastro') }}">Cadastro</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="cadastro">Recuperar senha</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="#">Sair</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-7" aria-controls="submenu-7"><i class="fas fa-fw fa-inbox"></i>Apps <span class="badge badge-secondary">New</span></a>
-                                <div id="submenu-7" class="collapse submenu" style="">
-                                    <ul class="nav flex-column">
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="inbox.html">Inbox</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="email-details.html">Email Detail</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="email-compose.html">Email Compose</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="message-chat.html">Message Chat</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-9" aria-controls="submenu-9"><i class="fas fa-fw fa-map-marker-alt"></i>Maps</a>
-                                <div id="submenu-9" class="collapse submenu" style="">
-                                    <ul class="nav flex-column">
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="map-google.html">Google Maps</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="map-vector.html">Vector Maps</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-10" aria-controls="submenu-10"><i class="fas fa-f fa-folder"></i>Menu Level</a>
-                                <div id="submenu-10" class="collapse submenu" style="">
-                                    <ul class="nav flex-column">
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="#">Level 1</a>
+                                            <a class="nav-link" href="{{ route('logout') }}">Sair</a>
                                         </li>
                                     </ul>
                                 </div>
