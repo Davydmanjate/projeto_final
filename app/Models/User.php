@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -15,8 +15,8 @@ class User extends Authenticatable
         'email',
         'phone',
         'password',
-        'facebook_id',      // Adicione o facebook_id
-        'facebook_token',   // Adicione o facebook_token
+        'facebook_id',
+        'github_id'
     ];
 
     protected $hidden = [

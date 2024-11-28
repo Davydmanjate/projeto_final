@@ -16,10 +16,9 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('phone', 9);
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password')->nullable();  // Permite nulo para logins via redes sociais
-            $table->string('facebook_id')->nullable()->unique();  // ID do Facebook
-            $table->string('facebook_token')->nullable();  // Token de acesso do Facebook
-            $table->enum('auth_method', ['local', 'facebook'])->default('local');
+            $table->string('password')->nullable();  
+            $table->string('github_id')->nullable()->unique();
+            $table->string('github_token')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

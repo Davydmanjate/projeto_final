@@ -1,6 +1,6 @@
 <?php
-
 namespace App\Http\Controllers;
+
 use Laravel\Socialite\Facades\Socialite;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -10,15 +10,18 @@ class FacebookController extends Controller
 {
     public function redirectToFacebook()
     {
+        // Redireciona o usuário para o Facebook para autenticação
         return Socialite::driver('facebook')->redirect();
     }
+
     // Recebe o retorno do Facebook e autentica ou cria o usuário
     public function handleFacebookCallback()
     {
         try {
-            // Obtém os dados do usuário autenticado
+            // Obtém os dados do usuário autenticado do Facebook
             $facebookUser = Socialite::driver('facebook')->user();
 
+            // Verifica se já existe um usuário com o facebook_id
             $user = User::where('facebook_id', $facebookUser->getId())->first();
 
             if (!$user) {
@@ -28,6 +31,7 @@ class FacebookController extends Controller
                     'email' => $facebookUser->getEmail(),
                     'facebook_id' => $facebookUser->getId(),
                     'avatar' => $facebookUser->getAvatar(),
+                    'password' => bcrypt(str_random(24)), // Cria uma senha aleatória (não necessária, já que o login será via Facebook)
                 ]);
             }
 
