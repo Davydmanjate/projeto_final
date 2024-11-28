@@ -63,8 +63,8 @@
                             <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
                                 <div class="nav-user-info">
                                     <h5 class="mb-0 text-white nav-user-name">
-                                    {{auth()->user()->name}}</h5>
-                                    <span class="status"></span><span class="ml-2">Available</span>
+                                    Usuário: {{auth()->user()->name}}</h5>
+                                    <span class="status"></span><span class="ml-2">Logado</span>
                                 </div>
                                 <a class="dropdown-item" href="{{ route('auth.login') }}"><i class="fas fa-user mr-2"></i>Login</a>
                                 <a class="dropdown-item" href="{{ route('cadastro') }}"><i class="fas fa-cog mr-2"></i>Cadastro</a>
