@@ -38,7 +38,7 @@
                         </label>
                     </div>
                     <button type="submit" class="btn btn-primary btn-lg btn-block">Sign in</button><br>
-                    <a href="{{ route('auth.github') }}" class="btn btn-primary">
+                    <a href="{{ route('github.login') }}" class="btn btn-primary">
                         Login com Github
                     </a>
                 </form>

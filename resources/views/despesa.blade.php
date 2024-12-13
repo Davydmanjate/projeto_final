@@ -20,7 +20,7 @@
             <tr>
                 <td>{{ $despesa->id }}</td>
                 <td>{{ $despesa->descricao }}</td>
-                <td>{{ number_format($despesa->valor, 2, ',', '.') }}</td> <!-- Formato brasileiro -->
+                <td>{{ number_format($despesa->valor, 2, ',', '.') }}</td>
                 <td>{{ $despesa->status }}</td>
                 <td>
                     <a href="{{ route('dedit', $despesa) }}" class="btn btn-warning">Editar</a>

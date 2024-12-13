@@ -85,6 +85,48 @@ class UserController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect()->route('login.auth')->with('success', 'Logout realizado com sucesso!');
+        return redirect()->route('auth.login')->with('success', 'Logout realizado com sucesso!');
+    }
+
+    /**
+     * Redireciona o usuário para a página de autenticação do GitHub.
+     */
+    public function redirectToGithub()
+    {
+        return Socialite::driver('github')->redirect();
+    }
+
+    /**
+     * Trata o retorno da autenticação do GitHub.
+     */
+    public function handleGithubCallback()
+    {
+        try {
+            // Obtém os dados do usuário do GitHub
+            $githubUser = Socialite::driver('github')->stateless()->user();
+
+            // Verifica se o usuário já existe no banco de dados
+            $user = User::where('email', $githubUser->email)->first();
+
+            // Se não existir, cria um novo usuário
+            if (!$user) {
+                $user = User::create([
+                    'name' => $githubUser->name,
+                    'email' => $githubUser->email,
+                    'github_id' => $githubUser->id,
+                    'password' => Hash::make(uniqid()), // Gera uma senha aleatória
+                ]);
+            }
+
+            // Faz login do usuário
+            Auth::login($user);
+
+            // Redireciona para o dashboard
+            return redirect()->route('dashboard')->with('success', 'Login realizado com sucesso!');
+
+        } catch (\Exception $e) {
+            // Em caso de erro, redireciona de volta para o login
+            return redirect()->route('auth.login')->with('error', 'Erro na autenticação do GitHub');
+        }
     }
 }

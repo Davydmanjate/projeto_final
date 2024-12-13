@@ -9,12 +9,7 @@ use App\Http\Controllers\{
     RelatorioController,
     AuditController
 };
-use Laravel\Socialite\Facades\Socialite;
-use App\Models\User;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
 
 // Middleware para rotas autenticadas
 Route::middleware(['auth'])->group(function () {
@@ -43,6 +38,10 @@ Route::prefix('auth')->group(function () {
     // Esqueceu a senha
     Route::get('/forgot-password', [UserController::class, 'forgot'])->name('auth.forgot');
     Route::post('/forgot-password', [UserController::class, 'forgotPost'])->name('auth.forgot.post');
+
+    // Login com GitHub
+    Route::get('/github', [UserController::class, 'redirectToGithub'])->name('github.login');
+    Route::get('/github/callback', [UserController::class, 'handleGithubCallback'])->name('github.callback');
 });
 
 // Logout
@@ -78,46 +77,5 @@ Route::get('/relatorio', [RelatorioController::class, 'index'])->name('relatorio
 
 // Auditorias
 Route::get('/audits', [AuditController::class, 'index'])->name('audits.index');
-
-// Login com GitHub
-Route::get('/auth/github', function () {
-    return Socialite::driver('github')->redirect();
-})->name('auth.github');
-
-// Callback do GitHub
-Route::get('/auth/github/callback', function () {
-    try {
-        $githubUser = Socialite::driver('github')->stateless()->user();
-
-        // Verifica se o usuário existe
-        $user = User::where('email', $githubUser->email)->first();
-
-        if (!$user) {
-            $user = User::create([
-                'name' => $githubUser->name ?? $githubUser->nickname,
-                'email' => $githubUser->email,
-                'phone' => $githubUser->phone,
-                'password' => Hash::make(Str::random(16)),
-                'github_id' => $githubUser->id,
-                'avatar' => $githubUser->avatar,
-            ]);
-        } else {
-            // Atualiza informações de usuário existente
-            $user->update([
-                'github_id' => $githubUser->id,
-                'avatar' => $githubUser->avatar,
-                'github_token' => $githubUser->token,
-            ]);
-        }
-
-        // Faz login do usuário
-        Auth::login($user);
-
-        // Redireciona ao dashboard
-        return redirect()->route('/dashboard')->with('success', 'Login realizado com sucesso!');
-    } catch (\Exception $e) {
-        return redirect('/auth/login')->withErrors('Erro ao realizar login com GitHub.');
-    }
-});
 
 require __DIR__ . '/auth.php';

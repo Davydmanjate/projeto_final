@@ -9,12 +9,16 @@ class Audit extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'user_id', 'action', 'model', 'data_before', 'data_after'
-    ];
-
     protected $casts = [
         'data_before' => 'array',
         'data_after' => 'array',
+    ];
+
+    protected $fillable = [
+        'user_id',
+        'action',
+        'model',
+        'data_before',
+        'data_after'
     ];
 }

@@ -58,6 +58,7 @@
                                 </li>
                             </ul>
                         </li>
+
                         <li class="nav-item dropdown nav-user">
                             <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="../assets/images/avatar-1.jpg" alt="" class="user-avatar-md rounded-circle"></a>
                             <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
@@ -110,9 +111,13 @@
                                         <li class="nav-item">
                                             <a class="nav-link" href="{{ route('relatorio') }}">Relatorio</a>
                                         </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{{ route('audits.index') }}">Suporte Tecnico</a>
+                                        </li>
                                     </ul>
                                 </div>
                             </li>
+
                             <li class="nav-item">
                                 <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-6" aria-controls="submenu-6"><i class="fas fa-fw fa-file"></i>Pages</a>
                                 <div id="submenu-6" class="collapse submenu" style="">
